@@ -1,0 +1,21 @@
+service: go-lambda
+
+frameworkVersion: ">=1.28.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: go1.x
+
+package:
+  exclude:
+    - ./**
+  include:
+    - ./bin/**
+
+functions:
+  schedule:
+    handler: bin/schedule
+    events:
+      - http:
+          path: schedule
+          method: post
